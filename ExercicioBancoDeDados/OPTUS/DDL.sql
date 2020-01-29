@@ -1,0 +1,33 @@
+-- DDL
+
+CREATE DATABASE OPTUS_MANHA;
+
+CREATE TABLE Estilos(
+	IdEstilo INT PRIMARY KEY,
+	Nome	 VARCHAR(200) NOT NULL,
+);
+
+CREATE TABLE Artistas (
+	IdArtista INT PRIMARY KEY IDENTITY,
+	IdEstilo  INT FOREIGN KEY REFERENCES Estilos(IdEstilo),
+);
+
+
+CREATE TABLE Albuns (
+	IdAlbum			INT PRIMARY KEY IDENTITY,
+	IdArtista		INT FOREIGN KEY REFERENCES Artistas(IdArtista), 
+	Nome			VARCHAR(200) NOT NULL,
+	DataLancamento  DATE,
+	Localizacao		VARCHAR(200),
+	QntMinutos		TIME,
+	Ativo			BIT DEFAULT 1
+);
+
+
+CREATE TABLE Usuarios (
+	IdUsuario INT PRIMARY KEY IDENTITY,
+	Nome	  VARCHAR(200) NOT NULL,
+	Permissao VARCHAR(5)   NOT NULL,
+	Email	  VARCHAR(50)  NOT NULL,
+	Senha	  VARCHAR(16)  NOT NULL
+);
