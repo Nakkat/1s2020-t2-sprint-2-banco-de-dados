@@ -1,33 +1,42 @@
--- DDL
+-- DDL (Linguagem de Definição de Dados)
 
 CREATE DATABASE OPTUS_MANHA;
 
 CREATE TABLE Estilos(
-	IdEstilo INT PRIMARY KEY,
+	IdEstilo INT PRIMARY KEY IDENTITY,
 	Nome	 VARCHAR(200) NOT NULL,
 );
 
+
 CREATE TABLE Artistas (
 	IdArtista INT PRIMARY KEY IDENTITY,
-	IdEstilo  INT FOREIGN KEY REFERENCES Estilos(IdEstilo),
+	Nome      VARCHAR (200),
 );
+
 
 
 CREATE TABLE Albuns (
 	IdAlbum			INT PRIMARY KEY IDENTITY,
-	IdArtista		INT FOREIGN KEY REFERENCES Artistas(IdArtista), 
+	IdArtista		INT FOREIGN KEY REFERENCES Artistas(IdArtista),
+	IdEstilo		INT FOREIGN KEY REFERENCES Estilos(IdEstilo),
 	Nome			VARCHAR(200) NOT NULL,
 	DataLancamento  DATE,
-	Localizacao		VARCHAR(200),
-	QntMinutos		TIME,
-	Ativo			BIT DEFAULT 1
+	QntMinutos		INT,
+	Visualizacao	INT,
 );
 
 
 CREATE TABLE Usuarios (
-	IdUsuario INT PRIMARY KEY IDENTITY,
-	Nome	  VARCHAR(200) NOT NULL,
-	Permissao VARCHAR(5)   NOT NULL,
-	Email	  VARCHAR(50)  NOT NULL,
-	Senha	  VARCHAR(16)  NOT NULL
+	IdUsuario     INT PRIMARY KEY IDENTITY,
+	IdTipoUsuario INT FOREIGN KEY REFERENCES TipoUsuario(IdTipoUsuario),
+	Nome		  VARCHAR (200),
 );
+
+
+CREATE TABLE TipoUsuario (
+	IdTipoUsuario INT PRIMARY KEY IDENTITY,
+	Titulo		  VARCHAR (15),
+);
+
+ALTER TABLE TipoUsuario ADD Ativo BIT 
+ALTER TABLE Albuns ADD Localizacao VARCHAR(3);

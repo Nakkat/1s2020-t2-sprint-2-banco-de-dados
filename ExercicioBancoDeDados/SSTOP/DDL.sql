@@ -1,6 +1,9 @@
 --DDL 
+-- CRIAR BANCO
 
 CREATE DATABASE SSTOP_MANHA
+
+-- CRIAR TABELAS 
 
 CREATE TABLE EstilosMusicais (
 	IdEstiloMusical INT PRIMARY KEY IDENTITY,
@@ -17,6 +20,9 @@ CREATE TABLE Artistas (
 
 ALTER TABLE Artistas 
 ADD DataNascimento DATE;
+
+ALTER TABLE Artistas
+ADD DataCriacao DATE;
 
 -- Alteracao modificar coluna
 
