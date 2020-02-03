@@ -1,0 +1,42 @@
+CREATE DATABASE LOCADORA;
+USE LOCADORA;
+
+CREATE TABLE Empresas (
+	IdEmpresa	INT PRIMARY KEY IDENTITY,
+	Nome		VARCHAR (100),
+	Endereco	VARCHAR (100),
+	RazaoSocial VARCHAR (100),
+);
+
+CREATE TABLE Clientes (
+	IdCliente INT PRIMARY KEY IDENTITY,
+	Nome	  VARCHAR (100),
+	CPF		  VARCHAR (11)
+);
+
+CREATE TABLE Marcas (
+	IdMarca	INT PRIMARY KEY IDENTITY,
+	Titulo  VARCHAR (30)
+);
+
+CREATE TABLE Modelos (
+	IdModelo INT PRIMARY KEY IDENTITY,
+	Titulo	 VARCHAR (100),
+	IdMarca	 INT FOREIGN KEY REFERENCES Marcas(IdMarca)
+);
+
+CREATE TABLE Veiculos (
+	IdVeiculo INT PRIMARY KEY IDENTITY,
+	Placa	  VARCHAR(7),
+	IdModelo  INT FOREIGN KEY REFERENCES Modelos(IdModelo),
+	IdEmpresa INT FOREIGN KEY REFERENCES Empresas(IdEmpresa)
+);
+
+CREATE TABLE Alugueis (
+	IdAluguel		INT PRIMARY KEY IDENTITY,
+	DataRetirada	DATE,
+	DataDevolucao	DATE,
+	Analise			VARCHAR(10),
+	IdCliente		INT FOREIGN KEY REFERENCES Clientes(IdCliente),
+	IdVeiculo		INT FOREIGN KEY REFERENCES Veiculos(IdVeiculo)
+);

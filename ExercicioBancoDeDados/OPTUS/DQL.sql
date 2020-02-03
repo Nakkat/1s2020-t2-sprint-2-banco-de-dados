@@ -46,4 +46,27 @@ SELECT COUNT(IdAlbum) FROM Albuns;
 SELECT * FROM Albuns WHERE IdArtista = 4;
 SELECT * FROM Albuns WHERE DataLancamento = '2017-01-20';
 SELECT IdArtista FROM Albuns WHERE IdEstilo = 4;
-SELECT * FROM Albuns INNER JOIN Artistas ON Artistas.IdArtista = Albuns.IdArtista ORDER BY DataLancamento DESC;
+
+-- COM INNER JOIN (JUNCAO)
+
+SELECT Artistas.Nome, Albuns.Nome, Albuns.DataLancamento FROM Artistas 
+INNER JOIN Albuns ON Artistas.IdArtista = Albuns.IdArtista
+WHERE Albuns.IdArtista = 4;
+
+SELECT Artistas.Nome as NomeArtista, Albuns.Nome, Albuns.DataLancamento FROM Artistas 
+INNER JOIN Albuns ON Albuns.IdArtista = Artistas.IdArtista
+WHERE DataLancamento = '2017-01-20';
+
+SELECT * FROM Albuns 
+INNER JOIN Artistas ON Artistas.IdArtista = Albuns.IdArtista 
+ORDER BY DataLancamento DESC;
+
+-- DESAFIO 
+-- COM INNER JOIN
+-- COM 3 TABELAS
+
+SELECT Albuns.Nome, Artistas.Nome as NomeArtista, Estilos.Nome as NomeEstilo, DataLancamento  
+FROM Albuns 
+INNER JOIN Artistas ON Artistas.IdArtista = Albuns.IdArtista 
+INNER JOIN Estilos ON Estilos.IdEstilo = Albuns.IdEstilo
+WHERE Albuns.IdEstilo = 4
