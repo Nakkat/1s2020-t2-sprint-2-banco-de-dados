@@ -1,3 +1,7 @@
+USE LOCADORA;
+
+GO
+
 SELECT Nome,Endereco, RazaoSocial FROM Empresas
 SELECT Titulo FROM Marcas
 SELECT Nome, CPF FROM Clientes

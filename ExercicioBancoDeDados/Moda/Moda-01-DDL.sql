@@ -1,0 +1,34 @@
+CREATE DATABASE Moda_Manha;
+
+GO
+
+USE Moda_Manha;
+
+CREATE TABLE Marcas (
+	IdMarca     INT PRIMARY KEY IDENTITY NOT NULL,
+	NomeMarca	VARCHAR (255)
+);
+
+CREATE TABLE Cores (
+	IdCor		INT PRIMARY KEY IDENTITY NOT NULL,
+	Descricao	VARCHAR (255)
+);
+
+CREATE TABLE Tamanhos (
+	IdTamanho	INT PRIMARY KEY IDENTITY NOT NULL,
+	Descricao	VARCHAR (255)
+);
+
+
+CREATE TABLE Camisetas (
+	IdCamiseta		INT PRIMARY KEY IDENTITY NOT NULL,
+	Descricao		VARCHAR (255),
+	TipoTecido		VARCHAR (255),
+	Ferro			BIT,
+	IdMarca			INT FOREIGN KEY REFERENCES Marcas (IdMarca),
+	IdCor	        INT FOREIGN KEY REFERENCES Cores (IdCor),
+	IdTamanho	    INT FOREIGN KEY REFERENCES Tamanhos (IdTamanho)
+);
+
+
+
